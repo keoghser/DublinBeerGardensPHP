@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type"
+content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+</head>
+<body>
+
+<?php
+require_once 'connect.incl.php';
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+require_once("passwords.php"); 
+check_logged();
+
+
+
+if (isset($_POST['deletepub'])){
+
+		
+		$pubPicked = $_POST['deletepub'];
+		//echo 'Pub'.$pubPicked.' Deleted';
+
+		$query = 'delete from pubdetails where pubID='.$pubPicked;
+		$result=mysqli_query($link,$query)or die('Invalid query: ' . mysql_error());
+		
+		header('Location: ./index.php');
+		exit();
+	
+}
+
+
+
+?>
+
+
+
+
+</body>
+</html>

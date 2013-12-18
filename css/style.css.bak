@@ -1,0 +1,166 @@
+<style type="text/css">
+
+table {
+font-family:helvetica, arial;	
+border-collapse: collapse;
+}
+
+table, td, th, tr
+{
+font-family:helvetica, arial;
+border:1px solid black;
+border-collapse: collapse;
+text-align:center;
+}
+
+td{
+width:100px;
+}
+
+
+#pubtable{
+font-size:12px;
+font-family:helvetica,arial;
+margin-left:auto;
+margin-right:auto;
+margin-top:50px;
+padding:10px;
+padding-left:auto;
+padding-right:auto;
+border:solid;
+border-width:1px;
+height:105px;
+}
+
+#choose{
+font-size:14px;
+font-family:helvetica,arial;
+margin-left:auto;
+margin-right:auto;
+margin-top:100px;
+width:220px;
+border:solid;
+border-width:1px;
+padding:10px;
+}
+
+#addpub{
+font-size:14px;
+font-family:helvetica,arial;
+margin-left:auto;
+margin-right:auto;
+margin-top:50px;
+width:220px;
+border:solid;
+border-width:1px;
+padding:10px;
+}
+
+
+#login{
+font-family:helvetica,arial;
+margin-left:auto;
+margin-right:auto;
+margin-top:100px;
+width:300px;
+height:80px;
+border:solid;
+border-width:1px;
+padding:10px;
+}
+
+#addpubdetails{
+font-size:14px;
+font-family:helvetica,arial;
+margin-left:auto;
+margin-right:auto;
+margin-top:50px;
+width:350px;
+border:solid;
+border-width:1px;
+padding:10px;
+height:360px;
+}
+
+#editpubdetails{
+font-size:14px;
+font-family:helvetica,arial;
+margin-left:auto;
+margin-right:auto;
+margin-top:50px;
+width:350px;
+border:solid;
+border-width:1px;
+padding:10px;
+height:360px;
+}
+
+/*input {
+   display: inline-block;
+    float: right;
+    clear: right;
+}*/
+
+label{
+    display: inline-block;
+    float: left;
+    clear: right;
+    width: 125px;
+    text-align: left;
+	position:relative;
+	top:2px;
+	margin:2px;
+	width: 125px;
+}
+input {
+  display: inline-block;
+  vertical-align:bottom;
+  float: right;
+  margin:2px;
+  }
+
+#login input[type="submit"]{
+position:relative;
+top:8px;
+right:-157px;
+height:25px;
+width:55px;
+}
+
+#choose input[type="submit"]{
+position:relative;
+top:-2px;
+right:0px;
+height:25px;
+width:55px;
+}
+
+#addpub input[type="submit"]{
+position:relative;
+top:-20px;
+right:0px;
+height:25px;
+width:55px;
+}
+
+
+#pubtable input[type="submit"]{
+background-color:red;
+position:relative;
+top:8px;
+right:0px;
+height:25px;
+width:55px;
+}
+
+#pubtable input[type=button]{
+background-color:red;
+position:relative;
+top:8px;
+right:0px;
+height:25px;
+width:55px;
+}
+
+
+</style>

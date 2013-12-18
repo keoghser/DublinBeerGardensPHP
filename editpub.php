@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type"
+content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+<script>
+
+function ValidateForm()
+// Creates variable from entries and passes them through each validation function
+		{
+		
+		// Extracts data and creates variables from form entries		
+		var name=document.forms.editpubdetails.name.value;	
+		var address=document.forms.editpubdetails.address.value;
+		var locationeast=document.forms.editpubdetails.locationeast.value;
+		var locationnorth=document.forms.editpubdetails.locationnorth.value;
+		var seatingcapacity=document.forms.editpubdetails.seatingcapacity.value;
+		var phone=document.forms.editpubdetails.phone.value;
+		var gardensize=document.forms.editpubdetails.gardensize.value;
+		var url=document.forms.editpubdetails.url.value;
+		var imagelink=document.forms.editpubdetails.imagelink.value;
+		var description=document.forms.editpubdetails.description.value;		
+		
+		// Creates validation check data	
+		var numericExpression = /^[0-9" "\-.]+$/;
+		var alphabetExpression = /^[a-zA-Z" "\-\'!:,.;]+$/;
+		var alphaNumExpression = /^[0-9a-zA-Z" "\-\'!:,.;]+$/; // watch out for sql injection attackes with apostrophes
+		var webExpression = /\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i;
+		
+		
+
+		//Checks pub name
+		if ((name=="")||(!name.match(alphabetExpression))){
+			alert ("Invalid pub name, please re-enter")
+			return false;
+			}
+		
+
+		//Checks address
+		if ((address=="")||(!address.match(alphaNumExpression))){
+			alert ("Invalid address entry, please re-enter")
+			return false;
+			}
+		
+		//Checks locationeast
+		if ((locationeast=="")||(!locationeast.match(numericExpression))||(locationeast.length<8)){
+			alert ("Invalid location (east) entry, please re-enter")
+			return false;
+			}
+
+		//Checks locationnorth
+		if ((locationnorth=="")||(!locationnorth.match(numericExpression))||(locationnorth.length<8)){
+			alert ("Invalid location (north) entry, please re-enter")
+			return false;
+			}
+
+		//Checks seatingcapacity
+		if ((seatingcapacity=="")||(!seatingcapacity.match(numericExpression))){
+			alert ("Invalid seating capacity entry, please re-enter")
+			return false;
+			}
+		
+		//Checks phone
+		if ((phone=="")||(!phone.match(numericExpression))||(phone.length<9)){
+			alert ("Invalid phone entry, please re-enter")
+			return false;
+			}
+
+		//Checks gardensize	
+		if ((gardensize=="")||(!gardensize.match(numericExpression))){
+			alert ("Invalid garden size entry, please re-enter")
+			return false;
+			}
+
+		//Checks url
+		if ((url=="")||(!url.match(webExpression))){
+			alert ("Invalid web address entry, please re-enter")
+			return false;
+			}
+		
+		//Checks imagelink
+		if ((imagelink=="")||(!imagelink.match(alphaNumExpression))){
+			alert ("Invalid imagelink entry, please re-enter")
+			return false;
+			}
+
+		//Checks description
+		if ((description=="")||(!description.match(alphabetExpression))||(description.length>100)){
+			alert ("Invalid description entry, please re-enter")
+			return false;
+			}
+				
+		}// end function*/
+</script>
+<script>
+    function cancelAction() {
+      var cancel=confirm("Are you sure you want to cancel?")
+      if (cancel==true)
+      {
+      window.location.href = "/index.php";
+      }
+      else
+      {
+        <!--  nothing happens-->
+      }
+    }
+ </script>
+
+</head>
+<body>
+
+<?php
+require_once 'connect.incl.php';
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+require_once("passwords.php"); 
+check_logged();
+
+
+$pubPicked = $_POST['editpub'];
+
+
+if (isset($_POST['editpub'])){
+
+			
+
+			$query = 'select * from pubdetails where pubID='.$pubPicked;
+			$result = mysqli_query($link,$query)or die('Invalid query: ' . mysql_error());
+
+			$row = mysqli_fetch_row($result);
+
+			$x=1;
+			echo '<div id="editpubdetails">';
+			//echo '<form  name="editpubdetails" method="post" action="index.php" onsubmit="return ValidateForm();">';
+			echo '<form  name="editpubdetails" method="post" action="editpubdetails.php" onsubmit="return ValidateForm();">';
+			echo '<input type="hidden" name="editpubdetails" value=" '.$pubPicked.'"> ';
+			echo '<label>Pub name:</label> <input type="text" name="name" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Address:</label> <input type="text" name="address" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Location (Easting):</label> <input type="text" name="locationeast" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Location (Northing):</label> <input type="text" name="locationnorth" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Seating Capacity:</label> <input type="text" name="seatingcapacity" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Phone Number:</label> <input type="text" name="phone" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Garden Size:</label> <input type="text" name="gardensize" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Web URL:</label> <input type="text" name="url" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Image:</label> <input type="text" name="imagelink" value="'.$row[$x].'"><br>';
+			$x++;
+			echo '<label>Description:</label> <textarea name="description" rows="4" cols="40">'.$row[$x].'</textarea><br>';
+			//echo $_SESSION['loggedin']; 
+			echo '<input type=submit value="Save">';
+			echo '<input type="button" value="Cancel" onClick="cancelAction();" />';
+			echo '</form>';
+			echo '</div>';
+	
+}
+
+
+
+?>
+
+
+
+
+</body>
+</html>
