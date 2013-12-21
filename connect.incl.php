@@ -2,9 +2,9 @@
 
 	$DB = 'db1246372_pubdetails';
 	//$DB = 'beergarden';
-	$password = '72ea5e28';
-	$link = mysqli_connect('172.16.4.177', 'u1246372_root', $password);
-	//$link = mysqli_connect('localhost', 'root', $password);
+	$password = '08a492b769703a0b8be980c57f3bd380';
+	$link = mysqli_connect('172.16.4.129', 'u1246372_user', $password);
+	//$link = mysqli_connect('localhost', 'beergarden', $password);
 
 if (!$link)
 	{
